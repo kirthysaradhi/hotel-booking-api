@@ -1,44 +1,44 @@
 package com.airasia.hotel.booking.vo;
 
 import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 
-import javax.validation.constraints.NotBlank;
+/**
+ * 
+ * @author Kirthy Saradhi D
+ *
+ */
+public class BookingDetailsVO implements Serializable {
 
-public class BookingDetailsVO implements Serializable{
-	
+	@NotNull(message = "Hotel ID is Mandatory")
+	private int hotelId;
+
+	@NotNull(message = "Hotel Name is Mandatory")
+	private String hotelName;
+
 	private static final long serialVersionUID = 1L;
 
-	private Integer bookingId;
+	private int bookingId;
 
-    @NotBlank(message = "Checkin Date is Mandatory")
-    private String checkInDate;
-    
+	@NotNull(message = "Checkin Date is Mandatory")
+	private String checkInDate;
 
-    @NotBlank(message = "Checkout Date is Mandatory")
-    private String checkOutDate;
-    
-    private Integer days;
-    
-    private Float totalPrice;
-    
-    //Customer Info
-    private String custName;
-    
-    private String custEmail;
-    
-    private Integer custMobile;
-    
-    private String identificationNo;
-    
-    private Integer hotelId;
-    
-    private Integer roomId;
+	@NotNull(message = "Checkout Date is Mandatory")
+	private String checkOutDate;
 
-	public Integer getBookingId() {
+	private int days;
+
+	private Float totalPrice;
+
+	private CustomerVO customer;
+
+	private HotelRoomVO room;
+
+	public int getBookingId() {
 		return bookingId;
 	}
 
-	public void setBookingId(Integer bookingId) {
+	public void setBookingId(int bookingId) {
 		this.bookingId = bookingId;
 	}
 
@@ -58,11 +58,11 @@ public class BookingDetailsVO implements Serializable{
 		this.checkOutDate = checkOutDate;
 	}
 
-	public Integer getDays() {
+	public int getDays() {
 		return days;
 	}
 
-	public void setDays(Integer days) {
+	public void setDays(int days) {
 		this.days = days;
 	}
 
@@ -74,52 +74,36 @@ public class BookingDetailsVO implements Serializable{
 		this.totalPrice = totalPrice;
 	}
 
-	public String getCustName() {
-		return custName;
+	public CustomerVO getCustomer() {
+		return customer;
 	}
 
-	public void setCustName(String custName) {
-		this.custName = custName;
+	public void setCustomer(CustomerVO customer) {
+		this.customer = customer;
 	}
 
-	public String getCustEmail() {
-		return custEmail;
-	}
-
-	public void setCustEmail(String custEmail) {
-		this.custEmail = custEmail;
-	}
-
-	public Integer getCustMobile() {
-		return custMobile;
-	}
-
-	public void setCustMobile(Integer custMobile) {
-		this.custMobile = custMobile;
-	}
-
-	public String getIdentificationNo() {
-		return identificationNo;
-	}
-
-	public void setIdentificationNo(String identificationNo) {
-		this.identificationNo = identificationNo;
-	}
-
-	public Integer getHotelId() {
+	public int getHotelId() {
 		return hotelId;
 	}
 
-	public void setHotelId(Integer hotelId) {
+	public void setHotelId(int hotelId) {
 		this.hotelId = hotelId;
 	}
 
-	public Integer getRoomId() {
-		return roomId;
+	public String getHotelName() {
+		return hotelName;
 	}
 
-	public void setRoomId(Integer roomId) {
-		this.roomId = roomId;
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
 	}
-    
+
+	public HotelRoomVO getRoom() {
+		return room;
+	}
+
+	public void setRoom(HotelRoomVO room) {
+		this.room = room;
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.airasia.hotel.booking.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.airasia.hotel.booking.exception.ResourceNotFoundException;
+import com.airasia.hotel.booking.exception.Status;
 import com.airasia.hotel.booking.service.BookingDetailsService;
 import com.airasia.hotel.booking.vo.BookingDetailsVO;;
 
@@ -36,35 +38,34 @@ public class BookingDetailsController {
 	@Autowired
 	private BookingDetailsService bookingDetailsService;
 
-	@GetMapping("/bookingdetails")
+	@GetMapping("/booking")
 	public List<BookingDetailsVO> getAllBookingDetailsList() {
 
 		return bookingDetailsService.getAllBookingDetailsList();
 	}
 
-	@GetMapping("/bookingdetails/{id}")
+	@GetMapping("/booking/{id}")
 	public ResponseEntity<BookingDetailsVO> getBookingDetailsVOById(@PathVariable(value = "id") Long id)
 			throws ResourceNotFoundException {
 		BookingDetailsVO BookingDetailsVO = bookingDetailsService.get(id);
 		return ResponseEntity.ok().body(BookingDetailsVO);
 	}
 
-	@PostMapping("/bookingdetails")
-	public ResponseEntity<String> createBookingDetailsVO(@Valid @RequestBody BookingDetailsVO bookingDetailsVO) {
-		//return ResponseEntity.ok().body(bookingDetailsService.save(bookingDetailsVO));
-		if(!bookingDetailsService.save(bookingDetailsVO)) {
-	        return new ResponseEntity<>(
-	          "Year of birth cannot be in the future", 
-	          HttpStatus.BAD_REQUEST);
-	    } else {
-	 
-	    return new ResponseEntity<>(
-	      "SUCCESS" , 
-	      HttpStatus.OK);
-	    }
+	@PostMapping("/createOrder")
+	public ResponseEntity<Object> createBookingDetailsVO(@Valid @RequestBody BookingDetailsVO bookingDetailsVO) {
+		int bookingId = bookingDetailsVO.getBookingId();
+		if (bookingDetailsService.save(bookingDetailsVO)) {
+			Status status = new Status(new Date(), String.valueOf(bookingId) + " Created Successfully!!",
+					HttpStatus.OK, HttpStatus.OK.value());
+			return new ResponseEntity<>(status, HttpStatus.OK);
+		} else {
+			Status status = new Status(new Date(), String.valueOf(bookingId) + " Creation Failed!!",
+					HttpStatus.OK, HttpStatus.OK.value());
+			return new ResponseEntity<>(status, HttpStatus.OK);
+		}
 	}
 
-	@PutMapping("/bookingdetails/{id}")
+	@PutMapping("/booking/{id}")
 	public ResponseEntity<BookingDetailsVO> updateBookingDetails(@PathVariable(value = "id") Long id,
 			@Valid @RequestBody BookingDetailsVO bookingDetailsVO) throws ResourceNotFoundException {
 		BookingDetailsVO updateBookingDetailsVO = null;
@@ -75,7 +76,7 @@ public class BookingDetailsController {
 		return ResponseEntity.ok(updateBookingDetailsVO);
 	}
 
-	@DeleteMapping("/bookingdetails/{id}")
+	@DeleteMapping("/booking/{id}")
 	public Map<String, Boolean> deleteBookingDetailsById(@PathVariable(value = "id") Long id)
 			throws ResourceNotFoundException {
 

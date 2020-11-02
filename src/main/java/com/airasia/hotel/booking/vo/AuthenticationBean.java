@@ -18,7 +18,7 @@ public class AuthenticationBean {
 
 	@Override
 	public String toString() {
-		return String.format("HelloWorldBean [message=%s]", message);
+		return String.format("AuthenticationBean [message=%s]", message);
 	}
 
 }

@@ -10,7 +10,7 @@
 	<packaging>jar</packaging>
 
 	<name>airasia-hotel-booking</name>
-	<description>Project for Spring Boot</description>
+	<description>Booking Api for Airasia</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

@@ -4,15 +4,20 @@ import java.util.List;
 
 import com.airasia.hotel.booking.vo.BookingDetailsVO;
 
+/**
+ * 
+ * @author Kirthy Saradhi D
+ *
+ */
 public interface BookingDetailsService {
 
 	public boolean save(BookingDetailsVO bookingDetailsVO);
-   
-	BookingDetailsVO update(long id, BookingDetailsVO bookingDetailsVO);
-   
+
+	public BookingDetailsVO update(long id, BookingDetailsVO bookingDetailsVO);
+
 	boolean delete(long id);
 
-	BookingDetailsVO get(long id);
+	public BookingDetailsVO get(long id);
 
 	public List<BookingDetailsVO> getAllBookingDetailsList();
 
