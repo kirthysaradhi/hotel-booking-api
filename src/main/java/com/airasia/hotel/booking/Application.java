@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 
- * @author Kirthy Saradhi D
+ * @author Kirthy Saradhi D 
+ * Main Class to bringup the application
  *
  */
 @SpringBootApplication

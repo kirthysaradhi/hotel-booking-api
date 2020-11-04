@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 /**
  * 
  * @author Kirthy Saradhi D
+ * Main ExceptionHandler Class to handle all the exceptions related to the Application
  *
  */
 @ControllerAdvice

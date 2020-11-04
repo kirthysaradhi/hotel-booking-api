@@ -10,6 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Kirthy Saradhi D
+ * Entity class for BOOKING_DETAILS table
+ *
+ */
 @Entity
 @Table(name = "BOOKING_DETAILS")
 public class BookingDetails implements Serializable{

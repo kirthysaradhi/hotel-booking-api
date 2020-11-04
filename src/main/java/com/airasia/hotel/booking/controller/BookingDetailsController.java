@@ -28,6 +28,7 @@ import com.airasia.hotel.booking.vo.BookingDetailsVO;;
 /**
  * 
  * @author Kirthy Saradhi D
+ * Controller Class to create/update/delete/get details of a Booking/Order
  *
  */
 @CrossOrigin(origins = "http://localhost:4200")
@@ -38,12 +39,18 @@ public class BookingDetailsController {
 	@Autowired
 	private BookingDetailsService bookingDetailsService;
 
+	/*
+	 * Method to fetch all booking orders //TODO
+	 */
 	@GetMapping("/booking")
 	public List<BookingDetailsVO> getAllBookingDetailsList() {
 
 		return bookingDetailsService.getAllBookingDetailsList();
 	}
 
+	/*
+	 * Method to fetch a booking order based on id //TODO
+	 */
 	@GetMapping("/booking/{id}")
 	public ResponseEntity<BookingDetailsVO> getBookingDetailsVOById(@PathVariable(value = "id") Long id)
 			throws ResourceNotFoundException {
@@ -51,20 +58,26 @@ public class BookingDetailsController {
 		return ResponseEntity.ok().body(BookingDetailsVO);
 	}
 
+	/*
+	 * Method to create a booking order
+	 */
 	@PostMapping("/createOrder")
-	public ResponseEntity<Object> createBookingDetailsVO(@Valid @RequestBody BookingDetailsVO bookingDetailsVO) {
-		int bookingId = bookingDetailsVO.getBookingId();
+	public ResponseEntity<Object> createBookingDetails(@Valid @RequestBody BookingDetailsVO bookingDetailsVO) {
+		System.out.println("booking");
 		if (bookingDetailsService.save(bookingDetailsVO)) {
-			Status status = new Status(new Date(), String.valueOf(bookingId) + " Created Successfully!!",
+			Status status = new Status(new Date(), "SUCCESS",
 					HttpStatus.OK, HttpStatus.OK.value());
 			return new ResponseEntity<>(status, HttpStatus.OK);
 		} else {
-			Status status = new Status(new Date(), String.valueOf(bookingId) + " Creation Failed!!",
+			Status status = new Status(new Date(), "FAIL",
 					HttpStatus.OK, HttpStatus.OK.value());
 			return new ResponseEntity<>(status, HttpStatus.OK);
 		}
 	}
 
+	/*
+	 * Method to update a booking order based on id //TODO
+	 */
 	@PutMapping("/booking/{id}")
 	public ResponseEntity<BookingDetailsVO> updateBookingDetails(@PathVariable(value = "id") Long id,
 			@Valid @RequestBody BookingDetailsVO bookingDetailsVO) throws ResourceNotFoundException {
@@ -76,6 +89,9 @@ public class BookingDetailsController {
 		return ResponseEntity.ok(updateBookingDetailsVO);
 	}
 
+	/*
+	 * Method to delete a booking order based on id //TODO
+	 */
 	@DeleteMapping("/booking/{id}")
 	public Map<String, Boolean> deleteBookingDetailsById(@PathVariable(value = "id") Long id)
 			throws ResourceNotFoundException {

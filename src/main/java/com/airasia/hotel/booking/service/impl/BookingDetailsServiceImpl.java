@@ -2,8 +2,6 @@ package com.airasia.hotel.booking.service.impl;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,7 @@ import com.airasia.hotel.booking.vo.CustomerVO;
 /**
  * 
  * @author Kirthy Saradhi D
+ * Service Class to manage Booking/Order Related Operations
  *
  */
 @Service
@@ -68,13 +67,6 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 			System.out.println(ex.getMessage());
 		}
 		return flag;
-	}
-
-	public int calculateDays(String checkinDate, String checkoutDate) {
-
-		long daysBetween = ChronoUnit.DAYS.between(LocalDate.parse(checkinDate), LocalDate.parse(checkoutDate));
-
-		return (int) daysBetween;
 	}
 
 	@Override

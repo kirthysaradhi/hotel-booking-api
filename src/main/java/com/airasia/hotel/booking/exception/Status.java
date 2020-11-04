@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 
  * @author Kirthy Saradhi D
+ * The main class which has the payload as Response for all the apis
  *
  */
 public class Status {

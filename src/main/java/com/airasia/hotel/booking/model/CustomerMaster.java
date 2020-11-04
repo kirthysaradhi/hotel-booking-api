@@ -9,6 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Kirthy Saradhi D
+ * Entity class for CUSTOMER_MASTER table
+ *
+ */
 @Entity
 @Table(name = "CUSTOMER_MASTER")
 public class CustomerMaster implements Serializable{
